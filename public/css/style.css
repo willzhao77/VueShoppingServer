@@ -1,0 +1,228 @@
+#navbar{
+  padding: 15px;
+  z-index: 1;
+}
+
+#navbarlinks{
+  padding-left: 20px;
+}
+
+#logoimg{
+  width: 350px;
+  height:120px;
+}
+
+.navcontainer{
+  height:164px;
+}
+
+.brandcontainer{
+  width:350px;
+  text-align: center;
+}
+
+.navbar {
+  width: 100%; /* Full width */
+  background-color: rgb(33, 85, 168);
+  transition: top 0.3s;
+  border-bottom: 5px solid rgb(0,149,209);
+}
+
+.navbar.compressed {
+  background: rgb(33, 85, 168, 0.8);
+}
+
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(255,255,255,.7);
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: rgb(33, 85, 168);
+    /* background-color: rgb(201, 225, 255); */
+    background-color: rgb(232, 240, 249);
+}
+
+/* change Navbar menu color */
+.navbar-light .navbar-toggler{
+  background-color: lightblue;
+}
+
+/* remove footer white space bottom  */
+body {
+  margin-bottom: -40px;
+}
+
+.footer{
+  padding-top: 5px;
+  padding-bottom:1px;
+  background-color: rgb(33, 85, 168);
+  color: #FFF;
+  border-top: 2px solid rgb(0,149,209);
+}
+
+.itemtitle{
+  margin-top: 10px;
+  float: left;
+}
+
+.eventtitle{
+  margin: 10px 0 0 20px;
+  float: left;
+}
+
+.itemmore{
+  margin: 10px 60px 0 0;
+  float: right;
+  color: blue;
+}
+/* used for testing */
+.border1{
+  border: 1px solid;
+}
+
+
+.newsframe{
+  margin-top: 80px;
+}
+.newsitem{
+  float: left;
+  margin: 80px,0,0,0;
+  padding: 0;
+  width: 33.3%;
+}
+
+.staffitem{
+  float: left;
+  padding: 30px;
+  width: 25%;
+}
+
+.news{
+  margin-top: 25px;
+}
+
+.info{
+  /* background-color: green; */
+}
+
+.noticeframe {
+  margin-top: 25px;
+  background-color: lightblue;
+}
+
+.noticeframein{
+  margin-top: 10px;
+}
+
+
+
+.noticeitem{
+  margin: 10px;
+  padding: 10px;
+}
+
+
+.bgterm{
+  background-color: #AABBEE;
+}
+
+.termtitle{
+  margin-top: 20px;
+  color: #4477BB;
+}
+
+.termframe{
+  background-color: #EEFFEE;
+}
+
+.addressframe{
+  background-color: #778899;
+}
+
+/* public class */
+/* change container width */
+.marginpadding0{
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  max-width: 1200px;
+}
+
+.margin10{
+  margin: 10px;
+}
+
+.padding10{
+  padding: 10px;
+}
+
+
+
+.textcenter{
+  text-align: center;
+}
+
+.textleft{
+
+  text-align: justify;
+}
+
+.height600{
+  height:600px;
+}
+.height400{
+  height:400px;
+}
+
+.height300{
+  height:300px;
+}
+.height200{
+  height:200px;
+}
+.height100{
+  height:100px;
+}
+.newspic{
+  height: 200px;
+  width: 250px;
+}
+
+.tab2{
+	background-color: #eee;
+	padding: 60px 20px;
+	text-align: center;
+}
+
+.tab3{
+	background-color: #FFF;
+	padding: 60px 20px;
+	text-align: center;
+}
+
+
+.dropdown-menu{
+  margin-top: 0px;
+}
+
+/* Navbar Hover Dropdown */
+li.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    background-color: rgb(232, 240, 249);
+}
+
+.dropdown-item{
+    color: rgb(33, 85, 168);
+}
+
+.dropdown-menu>a:hover{
+  background-color: #d0dbe8;
+  color: rgb(53, 115, 228);}
