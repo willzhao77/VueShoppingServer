@@ -16,8 +16,10 @@ Route::get('/', function () {
 });
 
 Route::get('api/slideshow', 'Api\SlideShowController@index');
-
+Route::get('api/newslist', 'Api\NewsController@newsList');
+Route::get('api/newsinfo/{id}', 'Api\NewsController@newsInfo');
 
 
 
 Route::resource('back/slideshow', 'Back\SlideShowController');
+Route::resource('back/news', 'Back\NewsController');
