@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::get('api/slideshow', 'Api\SlideShowController@index');
 Route::get('api/newslist', 'Api\NewsController@newsList');
 Route::get('api/newsinfo/{id}', 'Api\NewsController@newsInfo');
-Route::resource('api/newscomment', 'Back\NewsCommentController'); //API use back end controller
+Route::resource('api/newscomment', 'Api\NewsCommentController'); 
 
 
 Route::resource('back/slideshow', 'Back\SlideShowController');
