@@ -26,11 +26,9 @@ class NewsController extends Controller
 
   public function newsInfo($id){
     $localdomain = 'http://localhost:8000/';
+    // increase clicked number
+    $news = News::where('id', $id)->increment('clicked', 1);
     $news = News::find($id);
-
-    // foreach($news as $newsitem){
-    //   $newsitem->img = $localdomain . $newsitem->img;
-    // }
 
     $result = new class{};
     $result->status = 0;
