@@ -20,12 +20,17 @@ Route::get('api/newslist', 'Api\NewsController@newsList');
 Route::get('api/newsinfo/{id}', 'Api\NewsController@newsInfo');
 Route::get('api/sharecategory', 'Api\ShareCategoryController@index');
 Route::resource('api/newscomment', 'Api\NewsCommentController');
+Route::resource('api/sharecomment', 'Api\ShareCommentController');
 Route::get('api/sharelist/{id}', 'Api\ShareItemController@shareList');
 Route::get('api/shareitem/{id}', 'Api\ShareItemController@show');
 Route::get('api/shareitemimgs/{id}', 'Api\ShareItemController@showImages');
+Route::get('api/shoplist', 'Api\ShopItemController@shopList');
+
 
 Route::resource('back/slideshow', 'Back\SlideShowController');
 Route::resource('back/news', 'Back\NewsController');
 Route::resource('back/newscomment', 'Back\NewsCommentController');
 Route::resource('back/sharecategory', 'Back\ShareCategoryController');
 Route::resource('back/shareitem', 'Back\ShareItemController');
+Route::resource('back/sharecomment', 'Back\ShareCommentController');
+Route::resource('back/shopitem', 'Back\ShopItemController');

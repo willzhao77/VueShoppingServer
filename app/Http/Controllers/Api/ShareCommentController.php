@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\NewsComment;
+use App\ShareComment;
 
-class NewsCommentController extends Controller
+class ShareCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class NewsCommentController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -25,7 +25,7 @@ class NewsCommentController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -36,30 +36,23 @@ class NewsCommentController extends Controller
      */
     public function store(Request $request)
     {
-      // skip csrf token check for all your api links in app/Http/Middleware/VerifyCsrfToken.php by adding the URIs to the $except property. Example:
-      //   protected $except = [
-      //     '/api/*'
-      //     ];
-
-
       $this->validate($request, [
         'id'=> 'required',
         'name' => 'required',
         'content' => 'required',
       ]);
 
-      $newscomment = new NewsComment;
-      $newscomment->newsid = $request->get('id');
-      $newscomment->name = $request->get('name');
-      $newscomment->content = $request->get('content');
+      $sharecomment = new ShareComment;
+      $sharecomment->share_id = $request->get('id');
+      $sharecomment->name = $request->get('name');
+      $sharecomment->content = $request->get('content');
 
-      if($newscomment->save())
+      if($sharecomment->save())
       {
-        return redirect('/api/newscomment');
+        return redirect('/api/sharecomment');
       }else{
-        return redirect()->back()->withInput()->withErrors('Create new comment faild.');
+        return redirect()->back()->withInput()->withErrors('Create share comment faild.');
       }
-
     }
 
     /**
@@ -70,11 +63,11 @@ class NewsCommentController extends Controller
      */
     public function show($id)
     {
-       $comments = NewsComment::orderBy('created_at', 'desc')->where('newsid', $id)->paginate(3);
-       $result = new class{};
-       $result->status = 0;
-       $result->message = $comments;
-       return json_encode($result);
+      $comments = ShareComment::orderBy('created_at', 'desc')->where('share_id', $id)->paginate(3);
+      $result = new class{};
+      $result->status = 0;
+      $result->message = $comments;
+      return json_encode($result);
     }
 
     /**
@@ -85,7 +78,7 @@ class NewsCommentController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -97,7 +90,7 @@ class NewsCommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //
     }
 
     /**
@@ -108,6 +101,6 @@ class NewsCommentController extends Controller
      */
     public function destroy($id)
     {
-
+        //
     }
 }
