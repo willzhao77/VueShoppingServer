@@ -25,6 +25,9 @@ Route::get('api/sharelist/{id}', 'Api\ShareItemController@shareList');
 Route::get('api/shareitem/{id}', 'Api\ShareItemController@show');
 Route::get('api/shareitemimgs/{id}', 'Api\ShareItemController@showImages');
 Route::get('api/shoplist', 'Api\ShopItemController@shopList');
+Route::get('api/shopitem/{id}', 'Api\ShopItemController@show');
+Route::get('api/shopitemimgs/{id}', 'Api\ShopItemController@showImages');
+Route::get('api/shopitemdetails/{id}', 'Api\ShopItemController@showDetails');
 
 
 Route::resource('back/slideshow', 'Back\SlideShowController');
