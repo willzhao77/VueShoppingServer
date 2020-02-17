@@ -2,11 +2,11 @@
 @section('content')
 
 <div class="">
-  <form action="{{ url('back/sharecomment/'.$comment->id) }}" method="POST" enctype="multipart/form-data">
+  <form action="{{ url('back/shopitemcomment/'.$comment->id) }}" method="POST" enctype="multipart/form-data">
     {{ method_field('PATCH') }}
     {!! csrf_field() !!}
     <div class="">
-      <label for="">Share Item ID:</label><p>{{ $comment->toShareItem->title }}</p>
+      <label for="">Shop Item ID:</label><input type="" name="item_id" value="{{ $comment->item_id }}">
     </div>
     <div class="">
       <label for="">Name:</label><input type="" name="name" value="{{ $comment->name }}">

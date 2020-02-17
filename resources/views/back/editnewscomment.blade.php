@@ -6,7 +6,7 @@
     {{ method_field('PATCH') }}
     {!! csrf_field() !!}
     <div class="">
-      <label for="">News ID:</label><input type="" name="newsid" value="{{ $comment->newsid }}">
+      <label for="">News ID:</label><p>{{ $comment->toNews->title}}</p>
     </div>
     <div class="">
       <label for="">Name:</label><input type="" name="name" value="{{ $comment->name }}">

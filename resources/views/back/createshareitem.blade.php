@@ -12,8 +12,19 @@
     </div>
 
     <div class="">
-      <label for="">Category ID</label><input type="" name="category_id" value="">
+      <label for="">Category ID</label>
+      <select name="category_id">
+        <option value="">--- Select Category ---</option>
+        @foreach ($categories as $Category)
+
+        <option value="{{ $Category->id }}">{{ $Category->title }}</option>
+
+        @endforeach
+      </select>
+      <label for="" style="color:red">*</label>
     </div>
+
+
     <div class="">
       <label for="">User Name:</label><input type="" name="user_name" value="">
     </div>

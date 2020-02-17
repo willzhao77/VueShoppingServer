@@ -5,7 +5,7 @@
   <table border = "1px">
     <tr>
       <th>ID</th>
-      <th>news ID</th>
+      <th>news Title</th>
       <th>User name</th>
       <th>comment</th>
       <th>Created Time</th>
@@ -18,7 +18,7 @@
         {{ $comment->id }}
       </td>
       <td>
-        {{ $comment->newsid }}
+        {{ $comment->toNews->title }}
       </td>
       <td>
         <P>{{ $comment->name}}</P>

@@ -25,7 +25,7 @@
         <P>{{ $shareitem->title}}</P>
       </td>
       <td>
-        <P>{{ $shareitem->category_id}}</P>
+        <P>{{ $shareitem->itemCate->title}}</P>
       </td>
       <td>
         <P>{{ $shareitem->user_name}}</P>

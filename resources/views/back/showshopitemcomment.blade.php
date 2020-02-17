@@ -1,11 +1,11 @@
 @extends('adminframe')
 @section('content')
 <div class="">
-  <a href="{{ url('back/sharecomment/create') }}" class="btn btn-lg btn-primary">Create Comment</a>
+  <a href="{{ url('back/shopitemcomment/create') }}" class="btn btn-lg btn-primary">Create Comment</a>
   <table border = "1px">
     <tr>
       <th>ID</th>
-      <th>Share ID</th>
+      <th>Item ID</th>
       <th>User name</th>
       <th>comment</th>
       <th>Created Time</th>
@@ -15,10 +15,10 @@
     @foreach ($comments as $comment)
     <tr>
       <td>
-        {{ $comment->id}}
+        {{ $comment->id }}
       </td>
       <td>
-        {{ $comment->toShareItem->title  }}
+        {{ $comment->item_id }}
       </td>
       <td>
         <P>{{ $comment->name}}</P>
@@ -33,8 +33,8 @@
           <P>{{ $comment->updated_at}}</P>
       </td>
       <td>
-          <a href="{{ url('back/sharecomment/'.$comment->id.'/edit') }}" class="btn btn-success">Edit</a>
-          <form action="{{ url('back/sharecomment/'.$comment->id) }}" method="POST" style="display: inline;">
+          <a href="{{ url('back/shopitemcomment/'.$comment->id.'/edit') }}" class="btn btn-success">Edit</a>
+          <form action="{{ url('back/shopitemcomment/'.$comment->id) }}" method="POST" style="display: inline;">
               {{ method_field('DELETE') }}
               {{ csrf_field() }}
               <button type="submit" class="btn btn-danger">Delete</button>

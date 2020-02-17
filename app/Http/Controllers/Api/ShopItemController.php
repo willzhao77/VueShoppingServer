@@ -90,5 +90,41 @@ $localdomain = 'http://localhost:8000/';
     return json_encode($result);
   }
 
+  public function getshopcartlist($ids)
+  {
+    $array = explode(',', $ids);
+    $cartitems = ShopItem::wherein('id', $array)->get();
+
+    $localdomain = 'http://localhost:8000/';
+    // add domain for display picutures
+    foreach($cartitems as &$item)
+    {
+
+      $images = explode("|",$item->show_imgs);
+      // dd($images);
+      foreach($images as &$image)
+      {
+        $imagefile = new class{};
+        $imagefile->src = $localdomain . $image;
+        $image = $imagefile;
+      }
+
+      $item->show_imgs = $images;
+
+      $item->img = $localdomain . $item->img;
+        // dd($items->show_imgs);
+    }
+
+
+
+
+
+    $result = new class{};
+    $result->status = 0;
+    $result->message = $cartitems;
+    return json_encode($result);
+  }
+
+
 
 }

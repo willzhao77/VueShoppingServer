@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Back;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\ShareItem;
+use App\ShareCategory;
 
 class ShareItemController extends Controller
 {
@@ -25,7 +26,7 @@ class ShareItemController extends Controller
      */
     public function create()
     {
-        return view('back\createshareitem');
+        return view('back\createshareitem')->with("categories", ShareCategory::all());
     }
 
     /**
@@ -97,7 +98,7 @@ class ShareItemController extends Controller
      */
     public function edit($id)
     {
-          return view('back/editshareitem')->with('shareitem', ShareItem::find($id));
+          return view('back/editshareitem')->with('shareitem', ShareItem::find($id))->with("categories", ShareCategory::all());;
     }
 
     /**
