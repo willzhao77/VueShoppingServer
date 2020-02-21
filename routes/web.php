@@ -32,6 +32,7 @@ Route::get('api/shopitem/{id}', 'Api\ShopItemController@show');
 Route::get('api/shopitemimgs/{id}', 'Api\ShopItemController@showImages');
 Route::get('api/shopitemdetails/{id}', 'Api\ShopItemController@showDetails');
 Route::get('api/getshopcartlist/{ids}', 'Api\ShopItemController@getshopcartlist');
+Route::get('api/searchlist/{keyword}', 'Api\ShopItemController@getSearchList');
 
 
 Route::resource('back/slideshow', 'Back\SlideShowController');
