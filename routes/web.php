@@ -10,12 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//
 
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 Route::get('api/slideshow', 'Api\SlideShowController@index');
 Route::get('api/newslist', 'Api\NewsController@newsList');
@@ -24,6 +25,8 @@ Route::get('api/sharecategory', 'Api\ShareCategoryController@index');
 Route::resource('api/newscomment', 'Api\NewsCommentController');
 Route::resource('api/sharecomment', 'Api\ShareCommentController');
 Route::resource('api/shopitemcomment', 'Api\ShopItemCommentController');
+Route::resource('api/userdetails', 'Api\UserDetailsController');
+
 Route::get('api/sharelist/{id}', 'Api\ShareItemController@shareList');
 Route::get('api/shareitem/{id}', 'Api\ShareItemController@show');
 Route::get('api/shareitemimgs/{id}', 'Api\ShareItemController@showImages');
@@ -39,7 +42,11 @@ Route::resource('back/slideshow', 'Back\SlideShowController');
 Route::resource('back/news', 'Back\NewsController');
 Route::resource('back/newscomment', 'Back\NewsCommentController');
 Route::resource('back/sharecategory', 'Back\ShareCategoryController');
+// Route::resource('back/shareitem', 'Back\ShareItemController');
 Route::resource('back/shareitem', 'Back\ShareItemController');
+
+
+
 Route::resource('back/sharecomment', 'Back\ShareCommentController');
 Route::resource('back/shopitemcomment', 'Back\ShopItemCommentController');
 Route::resource('back/shopitem', 'Back\ShopItemController');

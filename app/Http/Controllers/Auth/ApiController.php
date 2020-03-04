@@ -11,6 +11,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class ApiController extends Controller
 {
@@ -50,7 +52,7 @@ class ApiController extends Controller
             'name' => $data['name'],
 //            'email' => $data['email'],
             'password' => password_hash($data['password'], PASSWORD_DEFAULT),
-            'role' => 1,   // 1 means normal user 
+            'role' => 1,
             'api_token' => hash('sha256', $data['api_token']),
         ]);
     }
@@ -64,18 +66,25 @@ class ApiController extends Controller
 
     public function login()
     {
-        $user = User::where($this->username(), request($this->username()))
-            ->firstOrFail();
+        try{
+          $user = User::where($this->username(), request($this->username()))
+              ->firstOrFail();
+              if (!password_verify(request('password'), $user->password)) {
+                  return response()->json(['error' => '抱歉，账号名或者密码错误！'],
+                      403);
+              }
 
-        if (!password_verify(request('password'), $user->password)) {
-            return response()->json(['error' => '抱歉，账号名或者密码错误！'],
-                403);
+              $api_token = Str::random(80);
+              $user->update(['api_token' => hash('sha256', $api_token)]);
+
+              return compact('api_token');
+
+
+
+        }catch(ModelNotFoundException $ex) {
+          // Error handling code
         }
 
-        $api_token = Str::random(80);
-        $user->update(['api_token' => hash('sha256', $api_token)]);
-
-        return compact('api_token');
     }
 
     public function refresh()
