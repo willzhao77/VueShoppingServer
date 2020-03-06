@@ -43,4 +43,9 @@ class User extends Authenticatable
       return $this->hasOne('App\UserDetails', 'user_id',  'id');
     }
 
+    public function toCart()
+    {
+      return $this->hasOne('App\UserCart', 'user_id',  'id');
+    }
+
 }

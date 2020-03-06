@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\User;
-use App\UserDetails;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB;
+use App\UserCart;
 
-class UserDetailsController extends Controller
+class userCartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +16,7 @@ class UserDetailsController extends Controller
      */
     public function index()
     {
-      // dd($token);
-      //   $user = User::where('api_token', $token)->first();
-      //   return $user;
-      return "index";
+        //
     }
 
     /**
@@ -52,14 +48,9 @@ class UserDetailsController extends Controller
      */
     public function show($api_token)
     {
-      // front end send request with api_token to request user details.
-      // http://127.0.0.1:8000/api/userdetails/ + api_token
-
-
-      $user = User::where('api_token', hash('sha256', $api_token))->with('toDetails')->first();
+      $user = User::where('api_token', hash('sha256', $api_token))->with('toCart')->first();
 
       return $user;
-
     }
 
     /**
@@ -71,7 +62,6 @@ class UserDetailsController extends Controller
     public function edit($id)
     {
         //
-        return "edit";
     }
 
     /**
@@ -83,33 +73,59 @@ class UserDetailsController extends Controller
      */
     public function update(Request $request, $api_token)
     {
-      $user = User::where('api_token', hash('sha256', $api_token))->with('toDetails')->first();
-      if($user){
-        // if find the user by user's $token
+      $user = User::where('api_token', hash('sha256', $api_token))->with('toCart')->first();
+      if($user){ // if find the user by user's $token
         $this->validate($request, [
-        'name' => 'required',
-        'address' => 'required',
-        'mobile' => 'required',
+        'items' => 'required',
         ]);
 
-        if($user->toDetails != '')
+
+
+        if($user->toCart != '')
         {
-          $user->toDetails->name = $request->get('name');
-          $user->toDetails->address = $request->get('address');
-          $user->toDetails->mobile = $request->get('mobile');
-          if ($user->toDetails->save())
+          $userData = $request->get('items');
+          // return ($userData);
+          $addItem = json_decode($userData);  // get add item add from user's request
+
+          $oldCart =  json_decode($user->tocart->items); //get user's old cart data
+          $flag = false;
+          foreach ($oldCart as $item){
+            if($item->id == $addItem[0]->id){
+              $item->count += $addItem[0]->count;
+              $flag = true;
+            }
+          }
+
+          if(!$flag){
+            // return gettype($oldCart);
+
+            array_push($oldCart, $addItem[0]);
+            // return $oldCart;
+          }
+
+
+          $user->toCart->items = json_encode($oldCart);
+          if ( $user->toCart->save())
           {
             return "saved";
           } else {
             return "failed";
           }
+
+          // $user->toDetails->name = $request->get('name');
+          // $user->toDetails->address = $request->get('address');
+          // $user->toDetails->mobile = $request->get('mobile');
+          // if ($user->toDetails->save())
+          // {
+          //   return "saved";
+          // } else {
+          //   return "failed";
+          // }
         }else{
-          $userDetails = new UserDetails;
-          $userDetails->user_id = $user->id;
-          $userDetails->name = $request->get('name');
-          $userDetails->address = $request->get('address');
-          $userDetails->mobile = $request->get('mobile');
-          if ($userDetails->save())
+          $userCart = new UserCart;
+          $userCart->user_id = $user->id;
+          $userCart->items =  $request->get('items');
+          if ($userCart->save())
           {
             return "saved";
           } else {

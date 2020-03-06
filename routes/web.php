@@ -26,7 +26,7 @@ Route::resource('api/newscomment', 'Api\NewsCommentController');
 Route::resource('api/sharecomment', 'Api\ShareCommentController');
 Route::resource('api/shopitemcomment', 'Api\ShopItemCommentController');
 Route::resource('api/userdetails', 'Api\UserDetailsController');
-
+Route::resource('api/usercart', 'Api\UserCartController');
 Route::get('api/sharelist/{id}', 'Api\ShareItemController@shareList');
 Route::get('api/shareitem/{id}', 'Api\ShareItemController@show');
 Route::get('api/shareitemimgs/{id}', 'Api\ShareItemController@showImages');
