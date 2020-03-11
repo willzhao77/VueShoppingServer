@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\UserCart;
+use App\CartItem;
 
 class userCartController extends Controller
 {
@@ -48,9 +49,12 @@ class userCartController extends Controller
      */
     public function show($api_token)
     {
-      $user = User::where('api_token', hash('sha256', $api_token))->with('toCart')->first();
-
-      return $user;
+      $user = User::where('api_token', hash('sha256', $api_token))->with('userCart')->first();
+      // dd($user->userCart->cartItem);
+      $cartItems = $user->userCart->cartItem;
+      $cartItems = json_encode($cartItems);
+      return $cartItems;
+      // return $user->userCart();
     }
 
     /**
@@ -73,64 +77,86 @@ class userCartController extends Controller
      */
     public function update(Request $request, $api_token)
     {
-      $user = User::where('api_token', hash('sha256', $api_token))->with('toCart')->first();
+      // return "begin";
+      $user = User::where('api_token', hash('sha256', $api_token))->with('userCart')->first();
+
       if($user){ // if find the user by user's $token
         $this->validate($request, [
         'items' => 'required',
         ]);
+        // return "find user";
+        $userData = $request->get('items');
+        // return ($userData);
+        $addItem = json_decode($userData);  // get add item add from user's request
 
 
-
-        if($user->toCart != '')
+        if($user->userCart != '')  // if this user has cart info
         {
-          $userData = $request->get('items');
-          // return ($userData);
-          $addItem = json_decode($userData);  // get add item add from user's request
-
-          $oldCart =  json_decode($user->tocart->items); //get user's old cart data
-          $flag = false;
-          foreach ($oldCart as $item){
-            if($item->id == $addItem[0]->id){
-              $item->count += $addItem[0]->count;
-              $flag = true;
+          $cartItems = $user->userCart->cartItem()->get();
+          if(count($cartItems) == 0){  //this cart has no items.
+            $cartItem = new CartItem;
+            $cartItem->cart_id = $user->userCart->id;
+            $cartItem->item_id = $addItem[0]->id;
+            $cartItem->quantity = $addItem[0]->count;
+            $cartItem->selected = $addItem[0]->selected;
+            $cartItem->state = '';
+            if(!$cartItem->save()){
+              return "faild to save Cart item";
+            }else{
+              return "saved";
+            }
+        }else{//this cart has items.
+          foreach($cartItems as $cartItem) {
+            if($cartItem->item_id == $addItem[0]->id) // if Item exist.Only add quantity
+            {
+              $cartItem->quantity += $addItem[0]->count;
+              if(!$cartItem->save()){
+                return "faild to save Cart item";
+              }else{
+                return "saved";
+              }
             }
           }
+          $cartItem = new CartItem;
+          $cartItem->cart_id = $user->userCart->id;
+          $cartItem->item_id = $addItem[0]->id;
+          $cartItem->quantity = $addItem[0]->count;
+          $cartItem->selected = $addItem[0]->selected;
+          $cartItem->state = '';
+          if(!$cartItem->save()){
 
-          if(!$flag){
-            // return gettype($oldCart);
+            return "faild to save Cart item";
+          }else{
 
-            array_push($oldCart, $addItem[0]);
-            // return $oldCart;
-          }
-
-
-          $user->toCart->items = json_encode($oldCart);
-          if ( $user->toCart->save())
-          {
             return "saved";
-          } else {
-            return "failed";
           }
+        }
+        }else{   // if this user has no cart info
 
-          // $user->toDetails->name = $request->get('name');
-          // $user->toDetails->address = $request->get('address');
-          // $user->toDetails->mobile = $request->get('mobile');
-          // if ($user->toDetails->save())
-          // {
-          //   return "saved";
-          // } else {
-          //   return "failed";
-          // }
-        }else{
           $userCart = new UserCart;
+          $cartItem = new CartItem;
+
           $userCart->user_id = $user->id;
-          $userCart->items =  $request->get('items');
-          if ($userCart->save())
-          {
-            return "saved";
-          } else {
-            return "failed";
+
+          $userCart->save();
+          // return $userCart;
+          $cartItem->cart_id = $userCart->id;
+          $cartItem->item_id = $addItem[0]->id;
+          $cartItem->quantity = $addItem[0]->count;
+          $cartItem->selected = $addItem[0]->selected;
+          $cartItem->state = '';
+
+
+          if(!$cartItem->save()){
+            return "faild to save User Cart";
           }
+
+          if ($userCart->save())
+               {
+                 return "saved";
+               } else {
+                 return "failed to save cart item";
+               }
         }
       }else{
         // Not find the user by user's $token
@@ -144,8 +170,14 @@ class userCartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $api_token)
     {
-        //
+     $delItemId = $request->get('itemID');
+     $user = User::where('api_token', hash('sha256', $api_token))->with('userCart')->first();
+     $cartId = $user->userCart->id;
+     // return $cartId;
+     CartItem::where('item_id', $delItemId)->where('cart_id', $cartId)->delete();
+     return "removed";
     }
+
 }
