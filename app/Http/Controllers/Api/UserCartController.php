@@ -75,6 +75,22 @@ class userCartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     public function updateNum(Request $request, $api_token)
+     {
+       // update shopping cart item Number
+       $user = User::where('api_token', hash('sha256', $api_token))->with('toDetails')->first();
+       if($user){
+         return $user->cartitem->id;
+         // if find the user by user's $token
+         $cartItem = CartItem::where();
+       }else{
+         // if NOT find the user by user's $token
+       }
+     }
+
+
+
     public function update(Request $request, $api_token)
     {
       // return "begin";
@@ -106,17 +122,44 @@ class userCartController extends Controller
               return "saved";
             }
         }else{//this cart has items.
+          if($request->get('opt') == 'select')
+          {
+             $cartID = $cartItems = $user->userCart->id;  // get cart ID
+             $itemID = $addItem[0]->id;     //  get item ID
+             // return "before00";
+            $cartItem= CartItem::where('cart_id', $cartID)->where("item_id", $addItem[0]->id)->first();
+            $oldValue = $cartItem->selected;   // get old selected value
+            $newValue = ~($cartItem->selected)+2;   // 0, 1 change
+  
+            $cartItem->selected = $newValue;
+            if(!$cartItem->save()){
+              return "faild to save Cart item";
+            }else{
+              return "saved";
+            }
+          }
+
+
           foreach($cartItems as $cartItem) {
             if($cartItem->item_id == $addItem[0]->id) // if Item exist.Only add quantity
             {
-              $cartItem->quantity += $addItem[0]->count;
+              if($request->get('opt') == 'add')   // check if add or overwrite quantity
+              {
+
+                $cartItem->quantity += $addItem[0]->count;
+              }else{
+
+                $cartItem->quantity = $addItem[0]->count;
+              }
               if(!$cartItem->save()){
                 return "faild to save Cart item";
               }else{
                 return "saved";
               }
+
             }
           }
+
           $cartItem = new CartItem;
           $cartItem->cart_id = $user->userCart->id;
           $cartItem->item_id = $addItem[0]->id;
