@@ -130,7 +130,7 @@ class userCartController extends Controller
             $cartItem= CartItem::where('cart_id', $cartID)->where("item_id", $addItem[0]->id)->first();
             $oldValue = $cartItem->selected;   // get old selected value
             $newValue = ~($cartItem->selected)+2;   // 0, 1 change
-  
+
             $cartItem->selected = $newValue;
             if(!$cartItem->save()){
               return "faild to save Cart item";
