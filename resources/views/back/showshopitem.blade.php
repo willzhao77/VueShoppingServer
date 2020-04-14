@@ -21,7 +21,7 @@
         {{ $shopitem->id }}
       </td>
       <td>
-        <img src="../../{{ $shopitem->img }}" alt="" class="height100" width=100%>
+        <img src="../../{{ $shopitem->img }}" alt="" class="height100" "width=100%">
       </td>
       <td>
         <P>{{ $shopitem->title}}</P>

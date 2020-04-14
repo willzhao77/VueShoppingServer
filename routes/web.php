@@ -38,6 +38,9 @@ Route::get('api/getshopcartlist/{ids}', 'Api\ShopItemController@getshopcartlist'
 Route::get('api/searchlist/{keyword}', 'Api\ShopItemController@getSearchList');
 
 
+Route::get('back/admin', function () {
+    return view('adminframe');
+});
 Route::resource('back/slideshow', 'Back\SlideShowController');
 Route::resource('back/news', 'Back\NewsController');
 Route::resource('back/newscomment', 'Back\NewsCommentController');

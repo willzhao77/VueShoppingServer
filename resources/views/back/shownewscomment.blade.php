@@ -1,7 +1,7 @@
 @extends('adminframe')
 @section('content')
 <div class="">
-  <a href="{{ url('back/newscomment/create') }}" class="btn btn-lg btn-primary">Create News</a>
+  <a href="{{ url('back/newscomment/create') }}" class="btn btn-lg btn-primary">Create Comment</a>
   <table border = "1px">
     <tr>
       <th>ID</th>
