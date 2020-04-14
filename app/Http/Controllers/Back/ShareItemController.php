@@ -16,7 +16,7 @@ class ShareItemController extends Controller
      */
     public function index()
     {
-        return view('back\showshareitem')->with('shareitems', ShareItem::all());
+        return view('back/showshareitem')->with('shareitems', ShareItem::all());
     }
 
     /**
@@ -26,7 +26,7 @@ class ShareItemController extends Controller
      */
     public function create()
     {
-        return view('back\createshareitem')->with("categories", ShareCategory::all());
+        return view('back/createshareitem')->with("categories", ShareCategory::all());
     }
 
     /**

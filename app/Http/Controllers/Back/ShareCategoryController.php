@@ -15,7 +15,7 @@ class ShareCategoryController extends Controller
      */
     public function index()
     {
-        return view('back\showsharecategory')->with('sharecategories', ShareCategory::all());
+        return view('back/showsharecategory')->with('sharecategories', ShareCategory::all());
     }
 
     /**
@@ -25,7 +25,7 @@ class ShareCategoryController extends Controller
      */
     public function create()
     {
-        return view('back\createsharecategory');
+        return view('back/createsharecategory');
     }
 
     /**
