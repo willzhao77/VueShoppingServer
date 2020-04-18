@@ -17,7 +17,7 @@
         {{ $slide->id }}
       </td>
       <td>
-        <img src="../../{{ $slide->img }}" alt="" class="height100" width="180">
+        <img src="../{{ $slide->img }}" alt="" class="height100" width="180">
       </td>
       <td>
         <P>{{ $slide->url}}</P>

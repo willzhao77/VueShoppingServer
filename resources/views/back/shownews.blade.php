@@ -17,7 +17,7 @@
         {{ $newsitem->id }}
       </td>
       <td>
-        <img src="../../{{ $newsitem->img }}" alt="" class="height100" width="180">
+        <img src="../{{ $newsitem->img }}" alt="" class="height100" width="180">
       </td>
       <td>
         <P>{{ $newsitem->title}}</P>

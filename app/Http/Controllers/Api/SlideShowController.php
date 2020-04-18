@@ -11,7 +11,9 @@ class SlideShowController extends Controller
     public function index()
     {
       // define default domain, added to img path before output
-      $localdomain = 'http://localhost:8000/';
+      // $localdomain = 'http://localhost:8000/';
+      $localdomain = config('global.shoppingserverURL');
+
       $slides = SlideShow::All();
 
       foreach($slides as $slide){
