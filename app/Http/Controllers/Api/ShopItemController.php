@@ -10,7 +10,7 @@ class ShopItemController extends Controller
 {
   public function shopList(){
     $shoplist = ShopItem::paginate(3);
-$localdomain = 'http://localhost:8000/';
+    $localdomain = config('global.shoppingserverURL');
 
     // add domain for display picutures
     foreach($shoplist as &$item)
@@ -40,7 +40,7 @@ $localdomain = 'http://localhost:8000/';
   public function show($id)
   {
     // define default domain, added to img path before output
-    $localdomain = 'http://localhost:8000/';
+    $localdomain = config('global.shoppingserverURL');
 
     $shopitem = ShopItem::where('id', $id)->first();
     $shopitem->img = $localdomain . $shopitem->img;
@@ -54,14 +54,14 @@ $localdomain = 'http://localhost:8000/';
 
   public function showImages($id)
   {
-    $localdomain = 'http://localhost:8000/';
+    $localdomain = config('global.shoppingserverURL');
 
     $shopitem = ShopItem::where('id', $id)->first();
 
     $images = explode("|",$shopitem->show_imgs);
 
     // define default domain, added to img path before output
-    $localdomain = 'http://localhost:8000/';
+    $localdomain = config('global.shoppingserverURL');
     foreach($images as &$image){
       $imagefile = new class{};
       $imagefile->src = $localdomain . $image;
@@ -95,7 +95,7 @@ $localdomain = 'http://localhost:8000/';
     $array = explode(',', $ids);
     $cartitems = ShopItem::wherein('id', $array)->get();
 
-    $localdomain = 'http://localhost:8000/';
+    $localdomain = config('global.shoppingserverURL');
     // add domain for display picutures
     foreach($cartitems as &$item)
     {
@@ -128,7 +128,7 @@ $localdomain = 'http://localhost:8000/';
   public function getSearchList($key){
     $cartitems = ShopItem::where('title', 'like', '%' . $key . '%')->get();
 
-    $localdomain = 'http://localhost:8000/';
+    $localdomain = config('global.shoppingserverURL');
     // add domain for display picutures
     foreach($cartitems as &$item)
     {

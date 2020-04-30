@@ -10,7 +10,7 @@ class ShareItemController extends Controller
 {
     public function shareList($cateId){
       // define default domain, added to img path before output
-      $localdomain = 'http://localhost:8000/';
+      $localdomain = config('global.shoppingserverURL');
       if(!$cateId){
         $sharelist = ShareItem::All();
       }else{
@@ -29,7 +29,7 @@ class ShareItemController extends Controller
     public function show($id)
     {
       // define default domain, added to img path before output
-      $localdomain = 'http://localhost:8000/';
+      $localdomain = config('global.shoppingserverURL');
 
       $shareitem = ShareItem::where('id', $id)->first();
 
@@ -45,14 +45,14 @@ class ShareItemController extends Controller
 
     public function showImages($id)
     {
-      $localdomain = 'http://localhost:8000/';
+      $localdomain = config('global.shoppingserverURL');
 
       $shareitem = ShareItem::where('id', $id)->first();
 
       $images = explode("|",$shareitem->show_imgs);
 
       // define default domain, added to img path before output
-      $localdomain = 'http://localhost:8000/';
+      $localdomain = config('global.shoppingserverURL');
       foreach($images as &$image){
         $imagefile = new class{};
         $imagefile->src = $localdomain . $image;

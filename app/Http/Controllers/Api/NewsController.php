@@ -11,7 +11,7 @@ class NewsController extends Controller
   public function newsList()
   {
     // define default domain, added to img path before output
-    $localdomain = 'http://localhost:8000/';
+    $localdomain = config('global.shoppingserverURL');
     $news = News::All();
 
     foreach($news as $newsitem){
@@ -25,7 +25,7 @@ class NewsController extends Controller
   }
 
   public function newsInfo($id){
-    $localdomain = 'http://localhost:8000/';
+    $localdomain = config('global.shoppingserverURL');
     // increase clicked number
     $news = News::where('id', $id)->increment('clicked', 1);
     $news = News::find($id);
