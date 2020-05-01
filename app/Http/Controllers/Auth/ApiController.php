@@ -50,7 +50,7 @@ class ApiController extends Controller
     {
         return User::forceCreate([
             'name' => $data['name'],
-//            'email' => $data['email'],
+            'email' => $data['email'],
             'password' => password_hash($data['password'], PASSWORD_DEFAULT),
             'role' => 1,
             'api_token' => hash('sha256', $data['api_token']),
