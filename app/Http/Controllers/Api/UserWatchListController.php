@@ -79,15 +79,21 @@ class UserWatchListController extends Controller
      */
     public function update(Request $request, $api_token)
     {
-      $user = User::where('api_token', hash('sha256', $api_token))->first();
-      $watchList = new UserWatchList;
-      $watchList->user_id = $user->id;
-      $watchList->item_id = $request->id;
-      if(!$watchList->save()){
-        return "faild to save watchlist.";
+      if($request->opt == 'add'){ // add item to watch list
+        $user = User::where('api_token', hash('sha256', $api_token))->first();
+        $watchList = new UserWatchList;
+        $watchList->user_id = $user->id;
+        $watchList->item_id = $request->id;
+        if(!$watchList->save()){
+          return "faild to save watchlist.";
+        }else{
+          return "saved";
+        }
       }else{
-        return "saved";
+        $user = User::where('api_token', hash('sha256', $api_token))->first();
+        UserWatchList::where("user_id", $user->id)->where("item_id", $request->id)->delete();
       }
+
     }
 
     /**
@@ -96,8 +102,7 @@ class UserWatchListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
     }
 }
