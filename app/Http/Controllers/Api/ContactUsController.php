@@ -38,7 +38,7 @@ class ContactUsController extends Controller
     public function store(Request $request)
     {
 
-      
+
 
       $this->validate($request, [
         'name' => 'required',
@@ -52,6 +52,8 @@ class ContactUsController extends Controller
       $contactUs->email = $request->get('email');
       $contactUs->title = $request->get('title');
       $contactUs->message = $request->get('message');
+      $contactUs->if_read = false;
+      $contactUs->if_replied = false;
 
 
       if($contactUs->save())
