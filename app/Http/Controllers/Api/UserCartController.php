@@ -49,12 +49,20 @@ class userCartController extends Controller
      */
     public function show($api_token)
     {
-      $user = User::where('api_token', hash('sha256', $api_token))->with('userCart')->first();
-      // dd($user->userCart->cartItem);
-      $cartItems = $user->userCart->cartItem;
-      $cartItems = json_encode($cartItems);
-      return $cartItems;
-      // return $user->userCart();
+      $user = User::where('api_token', hash('sha256', $api_token))->first();
+      if($user){  //find this user by token
+        $user = User::where('api_token', hash('sha256', $api_token))->with('userCart')->first();
+        // dd($user->userCart->cartItem);
+        $cartItems = $user->userCart->cartItem;
+        $cartItems = json_encode($cartItems);
+        return $cartItems;
+        // return $user->userCart();
+      }else{
+        return 0;
+      }
+
+
+
     }
 
     /**
