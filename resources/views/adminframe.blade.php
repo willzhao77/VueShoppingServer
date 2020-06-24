@@ -28,6 +28,7 @@
           <a href="{{ url('back/sharecomment') }}" class="list-group-item list-group-item-action bg-light">Share Comment</a>
           <a href="{{ url('back/shopitem') }}" class="list-group-item list-group-item-action bg-light">Shop Item</a>
           <a href="{{ url('back/shopitemcomment') }}" class="list-group-item list-group-item-action bg-light">Shop Item Comment</a>
+          <a href="{{ url('back/message') }}" class="list-group-item list-group-item-action bg-light">Message</a>
 
         </div>
       </div>

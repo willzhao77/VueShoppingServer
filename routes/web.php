@@ -54,3 +54,4 @@ Route::resource('back/shareitem', 'Back\ShareItemController');
 Route::resource('back/sharecomment', 'Back\ShareCommentController');
 Route::resource('back/shopitemcomment', 'Back\ShopItemCommentController');
 Route::resource('back/shopitem', 'Back\ShopItemController');
+Route::resource('back/message', 'Back\MessageController');
