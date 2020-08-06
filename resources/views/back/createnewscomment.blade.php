@@ -1,5 +1,5 @@
-@extends('adminframe')
-@section('content')
+@extends('home')
+@section('content1')
 
 <div class="">
   <form action="{{ url('back/newscomment') }}" method="POST" enctype="multipart/form-data">

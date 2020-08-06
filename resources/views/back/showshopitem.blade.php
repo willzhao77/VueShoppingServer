@@ -1,5 +1,5 @@
-@extends('adminframe')
-@section('content')
+@extends('home')
+@section('content1')
 <div class="">
   <a href="{{ url('back/shopitem/create') }}" class="btn btn-lg btn-primary">Create Item</a>
   <table border = "1px">
@@ -21,7 +21,7 @@
         {{ $shopitem->id }}
       </td>
       <td>
-        <img src="../{{ $shopitem->img }}" alt="" class="height100" "width=100%">
+        <img src="../{{ $shopitem->img }}" alt="" class="height100" width="100%">
       </td>
       <td>
         <P>{{ $shopitem->title}}</P>

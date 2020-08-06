@@ -1,6 +1,5 @@
-@extends('adminframe')
-@section('content')
-
+@extends('home')
+@section('content1')
 <div class="">
   <form action="{{ url('back/shopitemcomment') }}" method="POST" enctype="multipart/form-data">
     {!! csrf_field() !!}

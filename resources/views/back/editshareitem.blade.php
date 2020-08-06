@@ -1,6 +1,5 @@
-@extends('adminframe')
-@section('content')
-
+@extends('home')
+@section('content1')
 <div class="">
   <form action="{{ url('back/shareitem/'.$shareitem->id) }}" method="POST" enctype="multipart/form-data">
     {{ method_field('PATCH') }}

@@ -1,5 +1,5 @@
-@extends('adminframe')
-@section('content')
+@extends('home')
+@section('content1')
 <div class="">
   <a href="{{ url('back/sharecategory/create') }}" class="btn btn-lg btn-primary">Create Category</a>
   <table border = "1px">

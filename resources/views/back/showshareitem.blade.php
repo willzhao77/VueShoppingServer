@@ -1,5 +1,5 @@
-@extends('adminframe')
-@section('content')
+@extends('home')
+@section('content1')
 <div class="">
   <a href="{{ url('back/shareitem/create') }}" class="btn btn-lg btn-primary">Create Item</a>
   <table border = "1px">
@@ -19,7 +19,7 @@
         {{ $shareitem->id }}
       </td>
       <td>
-        <img src="../{{ $shareitem->img }}" alt="" class="height100" width="180">
+        <img src="../{{ $shareitem->img }}" alt="" class="height100" width="100%">
       </td>
       <td>
         <P>{{ $shareitem->title}}</P>

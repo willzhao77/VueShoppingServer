@@ -1,5 +1,5 @@
-@extends('adminframe')
-@section('content')
+@extends('home')
+@section('content1')
 
 <div class="">
   <form action="{{ url('back/sharecategory/'.$sharecategory->id) }}" method="POST" enctype="multipart/form-data">

@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Middlware;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,19 +39,22 @@ Route::get('api/getshopcartlist/{ids}', 'Api\ShopItemController@getshopcartlist'
 Route::get('api/searchlist/{keyword}', 'Api\ShopItemController@getSearchList');
 
 
-Route::get('back/admin', function () {
-    return view('adminframe');
+Auth::routes(['register' => false]);
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['middleware' => ['admin:web']], function()
+{
+  Route::get('back/admin', function () {
+      return view('adminframe');
+  });
+  Route::resource('back/slideshow', 'Back\SlideShowController');
+  Route::resource('back/news', 'Back\NewsController');
+  Route::resource('back/newscomment', 'Back\NewsCommentController');
+  Route::resource('back/sharecategory', 'Back\ShareCategoryController');
+  Route::resource('back/shareitem', 'Back\ShareItemController');
+  Route::resource('back/sharecomment', 'Back\ShareCommentController');
+  Route::resource('back/shopitemcomment', 'Back\ShopItemCommentController');
+  Route::resource('back/shopitem', 'Back\ShopItemController');
+  Route::resource('back/message', 'Back\MessageController');
 });
-Route::resource('back/slideshow', 'Back\SlideShowController');
-Route::resource('back/news', 'Back\NewsController');
-Route::resource('back/newscomment', 'Back\NewsCommentController');
-Route::resource('back/sharecategory', 'Back\ShareCategoryController');
-// Route::resource('back/shareitem', 'Back\ShareItemController');
-Route::resource('back/shareitem', 'Back\ShareItemController');
-
-
-
-Route::resource('back/sharecomment', 'Back\ShareCommentController');
-Route::resource('back/shopitemcomment', 'Back\ShopItemCommentController');
-Route::resource('back/shopitem', 'Back\ShopItemController');
-Route::resource('back/message', 'Back\MessageController');

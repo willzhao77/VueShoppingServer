@@ -1,4 +1,4 @@
-@extends('adminframe')
+@extends('home')
 @section('content')
 
 <div class="">
