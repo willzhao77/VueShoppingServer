@@ -2,7 +2,7 @@
 @section('content1')
 <div class="">
   <a href="{{ url('back/newscomment/create') }}" class="btn btn-lg btn-primary">Create Comment</a>
-  <table border = "1px">
+  <table class="table table-bordered">
     <tr>
       <th>ID</th>
       <th>news Title</th>

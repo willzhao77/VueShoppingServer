@@ -2,7 +2,7 @@
 @section('content1')
 <div class="">
   <a href="{{ url('back/slideshow/create') }}" class="btn btn-lg btn-primary">New Slide</a>
-  <table border = "1px">
+  <table class="table table-bordered">
     <tr>
       <th>ID</th>
       <th>Picture</th>

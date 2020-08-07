@@ -4,33 +4,63 @@
 <div class="">
   <form action="{{ url('back/shopitem') }}" method="POST" enctype="multipart/form-data">
     {!! csrf_field() !!}
-    <div class="">
-      <label for="">Picture</label><input type="file" accept="image/*" name="image">
-    </div>
-    <div class="">
-      <label for="">Title</label><input type="" name="title" value="">
-    </div>
-    <div class="">
-      <label for="">Goods Number</label><input type="" name="goods_no" value="">
+    <div class="form-group row">
+      <label for="" class="col-sm-1 col-form-label">Picture</label>
+      <div class="col-sm-5">
+        <input type="file" accept="image/*" name="image">
+      </div>
     </div>
 
-    <div class="">
-      <label for="">Market Price</label><input type="" name="market_price" value="">
+    <div class="form-group row">
+      <label for="" class="col-sm-1 col-form-label">Title</label>
+      <div class="col-sm-5">
+        <input type="" name="title" value="" class="form-control">
+      </div>
     </div>
 
-    <div class="">
-      <label for="">Sell Price</label><input type="" name="sell_price" value="">
+    <div class="form-group row">
+      <label for="" class="col-sm-1 col-form-label">Goods Number</label>
+      <div class="col-sm-5">
+        <input type="" name="goods_no" value="" class="form-control">
+      </div>
     </div>
-    <div class="">
-      <label for="">Conetent:</label><textarea name="content" >Enter text here...</textarea>
+
+    <div class="form-group row">
+      <label for="" class="col-sm-1 col-form-label">Market Price</label>
+      <div class="col-sm-5">
+        <input type="" name="market_price" value="" class="form-control">
+      </div>
     </div>
-    <div class="">
-      <label for="">Goods Quantity</label><input type="" name="stock_quantity" value="">
+
+    <div class="form-group row">
+      <label for="" class="col-sm-1 col-form-label">Sell Price</label>
+      <div class="col-sm-5">
+        <input type="" name="sell_price" value="" class="form-control">
+      </div>
     </div>
-    <hr/>
-    <div class="">
-      <label for="">Picture</label><input type="file" accept="image/*" name="images[]" multiple>
+
+    <div class="form-group row">
+      <label for="" class="col-sm-1 col-form-label">Conetent:</label>
+      <div class="col-sm-5">
+        <textarea name="content" class="form-control">Enter text here...</textarea>
+      </div>
     </div>
+
+    <div class="form-group row">
+      <label for="" class="col-sm-1 col-form-label">Goods Quantity</label>
+      <div class="col-sm-5">
+        <input type="" name="stock_quantity" value="" class="form-control">
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label for="" class="col-sm-1 col-form-label">Picture</label>
+      <div class="col-sm-5">
+        <input type="file" accept="image/*" name="images[]" multiple>
+      </div>
+    </div>
+
     <button class="btn btn-lg btn-info">Add Item</button>
   </form>
 </div>
