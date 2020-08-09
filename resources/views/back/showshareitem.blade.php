@@ -19,7 +19,7 @@
         {{ $shareitem->id }}
       </td>
       <td>
-        <img src="../{{ $shareitem->img }}" alt="" class="height100" width="100%">
+        <img src="../{{ $shareitem->img }}" alt="" class="height100">
       </td>
       <td>
         <P>{{ $shareitem->title}}</P>
