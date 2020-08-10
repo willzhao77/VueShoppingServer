@@ -49,13 +49,18 @@ class UserWatchListController extends Controller
     public function show($api_token)
     {
       $user = User::where('api_token', hash('sha256', $api_token))->first();
-      $watchLists = UserWatchList::where('user_id', $user->id)->get();
-      $result = array();
-      foreach($watchLists as $watchList){
-        array_push($result, $watchList->item_id);
+      if($user){  //find this user by token
+        $watchLists = UserWatchList::where('user_id', $user->id)->get();
+        $result = array();
+        foreach($watchLists as $watchList){
+          array_push($result, $watchList->item_id);
+        }
+
+        return json_encode($result);
+      }else{
+        return 0;
       }
 
-      return json_encode($result);
     }
 
 
